@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wonders.dao.StudentMapper">
+	<resultMap id="BaseResultMap" type="com.wonders.entity.Student">
+            <result column="s_id" property="studentId" />
+	        <result column="student_name" property="studentName" />
+	        <result column="age" property="age" />
+	        <result column="phone" property="phone" />
+	        <result column="addr" property="addr" />
+		</resultMap>  
+    
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+         t.s_id , t.student_name, t.age, t.phone, t.addr
+    </sql>
+
+    <select id="findStudentById" resultType="com.wonders.entity.Student">
+        SELECT  <include refid="baseColumns" />
+        FROM student t where s_id=#{id, jdbcType=VARCHAR}
+    </select>
+
+</mapper>
