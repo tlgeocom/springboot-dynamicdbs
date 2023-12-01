@@ -30,7 +30,7 @@ public class DynamicDataSourceHolder {
      */
     public static String getDynamicDataSourceKey(){
         String key = DYNAMIC_DATASOURCE_KEY.get();
-        return key == null ? DbsConstant.mysql_db_01 : key;
+        return key == null ? DbsConstant.sqlite01 : key;
     }
 
     /**

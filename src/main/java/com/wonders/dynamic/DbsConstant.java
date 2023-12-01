@@ -7,11 +7,11 @@ package com.wonders.dynamic;
  * @Version: V1.0
  */
 public class DbsConstant {
-    //mysqldb01数据库 也即：默认数据源
-    public static final String mysql_db_01 = "mysqldb01";
-    //mysqldb02数据库
-    public static final String mysql_db_02 = "mysqldb02";
+    //sqlite_01数据库 也即：默认数据源
+    public static final String sqlite01 = "sqlite01";
+    //sqlite_02数据库
+    public static final String sqlite02 = "sqlite02";
     //oracle数据库
-    public static final String oracle_db_01 = "oracledb01";
+    //public static final String oracle_db_01 = "oracledb01";
 
 }

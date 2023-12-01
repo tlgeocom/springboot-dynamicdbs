@@ -26,6 +26,6 @@ public interface StudentMapper extends BaseMapper<Student> {
      * @Author: yyalin
      * @CreateDate: 2023/7/17 14:20
      */
-    @DataSource(value = DbsConstant.oracle_db_01)
+    //@DataSource(value = DbsConstant.oracle_db_01)
     Student findStudentById(String id);
 }

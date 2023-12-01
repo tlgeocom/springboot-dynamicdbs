@@ -52,4 +52,15 @@ public class DataSourceUtils {
         dynamicDataSource.setTargetDataSources(defineTargetDataSources);
         dynamicDataSource.afterPropertiesSet();
     }
+    /**
+     * @Description: 从目标数据源map集合中查找是否存在指定名称的数据源
+     * @Author zhangyu
+     */
+    public DruidDataSource findDataSource(String dataSourceName) {
+        Map<Object, Object> defineTargetDataSources = dynamicDataSource.getDefineTargetDataSources();
+        if(defineTargetDataSources.containsKey(dataSourceName)){
+            return (DruidDataSource)defineTargetDataSources.get(dataSourceName);
+        }
+        return null;
+    }
 }

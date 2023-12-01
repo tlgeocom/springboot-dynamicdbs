@@ -18,7 +18,7 @@ public class StudentServiceImpl implements StudentService{
     @Autowired
     private StudentMapper studentMapper;
     //注解加在实现层才能生效
-    @DataSource(value = DbsConstant.mysql_db_01)
+    @DataSource(value = DbsConstant.sqlite01)
     @Override
     public Student findStudentById(String id) {
         return studentMapper.selectById(id);

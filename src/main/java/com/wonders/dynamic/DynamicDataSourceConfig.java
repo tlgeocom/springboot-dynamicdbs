@@ -22,37 +22,30 @@ import java.util.Map;
 @MapperScan("com.wonders.dao")
 @Slf4j
 public class DynamicDataSourceConfig {
-    @Bean(name = DbsConstant.mysql_db_01)
-    @ConfigurationProperties("spring.datasource.mysqldb01")
+    @Bean(name = DbsConstant.sqlite01)
+    @ConfigurationProperties("spring.datasource.sqlite01")
     public DataSource masterDataSource() {
-        log.info("数据源切换为：{}",DbsConstant.mysql_db_01);
+        log.info("数据源切换为：{}",DbsConstant.sqlite01);
         DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
         return dataSource;
     }
 
-    @Bean(name = DbsConstant.mysql_db_02)
-    @ConfigurationProperties("spring.datasource.mysqldb02")
+    /*@Bean(name = DbsConstant.sqlite02)
+    @ConfigurationProperties("spring.datasource.sqlite02")
     public DataSource slaveDataSource() {
-        log.info("数据源切换为：{}",DbsConstant.mysql_db_02);
+        log.info("数据源切换为：{}",DbsConstant.sqlite02);
         DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
         return dataSource;
-    }
+    }*/
 
 
-    @Bean(name = DbsConstant.oracle_db_01)
-    @ConfigurationProperties("spring.datasource.oracledb01")
-    public DataSource oracleDataSource() {
-        log.info("数据源切换为oracle：{}",DbsConstant.oracle_db_01);
-        DruidDataSource dataSource = DruidDataSourceBuilder.create().build();
-        return dataSource;
-    }
+
     @Bean
     @Primary
     public DynamicDataSource dynamicDataSource(){
         Map<Object, Object> dataSourceMap = new HashMap<>(3);
-        dataSourceMap.put(DbsConstant.mysql_db_01,masterDataSource());
-        dataSourceMap.put(DbsConstant.mysql_db_02,slaveDataSource());
-        dataSourceMap.put(DbsConstant.oracle_db_01,oracleDataSource());
+        dataSourceMap.put(DbsConstant.sqlite01,masterDataSource());
+        //dataSourceMap.put(DbsConstant.sqlite02,slaveDataSource());
         //设置动态数据源
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         dynamicDataSource.setDefaultTargetDataSource(masterDataSource());

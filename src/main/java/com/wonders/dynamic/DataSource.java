@@ -15,5 +15,5 @@ import java.lang.annotation.*;
 @Inherited
 public @interface DataSource {
     //切换数据源名称，默认mysql_db_01
-    public String value() default DbsConstant.mysql_db_01;
+    public String value() default DbsConstant.sqlite01;
 }
