@@ -10,17 +10,21 @@ import com.wonders.dynamic.DynamicDataSourceHolder;
 import com.wonders.entity.Student;
 import com.wonders.service.StudentService;
 import com.wonders.service.StudentServiceImpl;
+import com.wonders.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * @Description: TODO
@@ -32,6 +36,8 @@ import java.util.Objects;
 @Api(tags="动态切换多数据源测试")
 @RestController
 public class TestController {
+    @Autowired
+    private UserService userService;
     @Resource
     DataSourceUtils dataSourceUtils;
     //@Autowired
@@ -40,6 +46,16 @@ public class TestController {
     private CommonMapper commonMapper;
     //@Autowired
     //private StudentServiceImpl studentService;  //一定要注册实现层才可以
+
+    @RequestMapping("/asycu")
+    public String getAsycUser() throws ExecutionException, InterruptedException {
+        //调用异步方法返回类型为Future<>
+        Future<String> future = userService.getAsycUser();
+
+        //get方法得到返回的结果
+        return future.get();
+    }
+
     @ApiOperation(value="方法一：声明方式动态切换多数据源测试", notes="test")
     @GetMapping("/terrain/{z}/{x}/{y}.terrain")
     public Map<String, Object> dynamicDataSourceTest(@PathVariable Integer z, @PathVariable Integer x, @PathVariable Integer y){
