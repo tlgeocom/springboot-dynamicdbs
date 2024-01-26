@@ -28,7 +28,7 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml    #mapper.xml 文件位置解决单独编写SQL问题
 terrain:
   sqlite:
-    directory: D:\
+    directory: D:\tmp
 logging:
   level:
     com.wonders.*: debug
