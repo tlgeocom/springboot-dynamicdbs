@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: dev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          strategy: SEMAPHORE
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 20000
+        readTimeout: 20000
+
+ribbon:
+  ServerListRefreshInterval: 2000 # ribbon缓存时间

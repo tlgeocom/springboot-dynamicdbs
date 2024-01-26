@@ -12,6 +12,7 @@ import org.springframework.util.CollectionUtils;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -45,7 +46,7 @@ public abstract class AbstractRoutingDataSource extends AbstractDataSource
             throw new IllegalArgumentException("Property 'targetDataSources' is required");
         } else {
             //初始化resolvedDataSources的大小
-            this.resolvedDataSources = CollectionUtils.newHashMap(this.targetDataSources.size());
+            this.resolvedDataSources = new HashMap((int)((float)this.targetDataSources.size() / 0.75F), 0.75F);
             //遍历目标数据源信息map集合，对其中的key，value进行解析
             this.targetDataSources.forEach((key, value) -> {
                 //resolveSpecifiedLookupKey方法没有做任何处理，只是将key继续返回

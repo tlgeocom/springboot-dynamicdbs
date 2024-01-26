@@ -19,5 +19,5 @@ public interface CommonMapper extends BaseMapper<String> {
      * @return
      */
 
-    String querySql(@Param("sql") String sql) ;
+    Object querySql(@Param("sql") String sql) ;
 }
